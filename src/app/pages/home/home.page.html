@@ -1,0 +1,26 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Pelis
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-row class="limit-width">
+    <ion-col size-md="4" size-lg="3" size-sm="6" size-xs="12" *ngFor="let film of films">
+      <ion-card (click)="goToFilmDetail(film.id!)">
+        <img [src]="film.fullPosterImage!()" />
+        <ion-card-header>
+          <ion-card-title>{{film.title}}</ion-card-title>
+          <ion-card-subtitle>
+            {{film.starsByRating!()}}
+          </ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          {{film.overview}}
+        </ion-card-content>
+      </ion-card>
+    </ion-col>
+  </ion-row>
+</ion-content>

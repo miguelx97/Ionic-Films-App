@@ -1,0 +1,47 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>{{film?.title}}</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" *ngIf="film">
+  <div class="limit-width">
+    <ion-row>
+      <ion-col size="6">
+        <img [src]="film.fullPosterImage!()" />
+      </ion-col>
+      <ion-col size="6">
+        <ion-text color="primary">
+          <h1>{{film.title}}</h1>
+          <h2>{{film.starsByRating!()}}</h2>
+        </ion-text>
+        <p>{{film.formattedDate!()}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row class="ion-padding-start ion-padding-end">
+      <ion-col size="12">
+        <p>{{film.overview}}</p>
+      </ion-col>
+    </ion-row>
+    <!-- similar films -->
+    <ion-list>
+      <ion-list-header>
+        <ion-label>
+          También te podría gustar
+        </ion-label>
+      </ion-list-header>
+      <ion-item *ngFor="let similarFilm of similarFilms" (click)="goToFilmDetail(similarFilm.id!)">
+        <ion-thumbnail slot="start">
+          <img [src]="similarFilm.fullPosterImage!()" />
+        </ion-thumbnail>
+        <ion-label>
+          <h2>{{similarFilm.title}}</h2>
+          <p>{{similarFilm.starsByRating!()}}</p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
